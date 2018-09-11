@@ -12,6 +12,10 @@
 //     // console.log(e.target["msg"].value);
 //   })
 
+
+//stop using "getElementByID" and instead use document.queryselector
+//ID's are for javascript. Best Practice: DON'T USE ID'S WHEN NOT USING JAVASCRIPT
+
 taskForm.addEventListener("submit", e => {
     e.preventDefault();
     let toDoList = document.getElementById("todo");
