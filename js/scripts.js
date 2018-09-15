@@ -18,8 +18,8 @@
 
 taskForm.addEventListener("submit", e => {
     e.preventDefault();
-    let toDoList = document.getElementById("todo");
-    let doneList = document.getElementById("done");
+    let toDoList = document.querySelector("todo");
+    let doneList = document.querySelector("done");
     let newTask = document.createElement("li");
     let task = e.target["tsk"].value;
     newTask.textContent = message;

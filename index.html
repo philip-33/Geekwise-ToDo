@@ -6,25 +6,31 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link rel="stylesheet" href="css\styles.css">
-    <title>Document</title>
+    <title>ToDo List</title>
 </head>
 <body>
-    <h1 id="todo">To Do</h1>
-    <ul></ul>
-    <h1 id="done">Done</h1>
-    <ul></ul>
-<!-- Create text field and button. When button is pressed, text from field is added to an array in JS file  -->
-    <div class="container-fluid">
-        <form method="post" name="taskForm" action="index.html">
-            <div class="form-group">
-                <label for="task">New Task:</label>
-                <input type="text" name="newTaskEntry" id="task" class="form-control" value="" placeholder="Do stuff">
-            </div>
-            <input type="submit" value="Submit" class="btn btn-primary">
-        </form>
+    <div class="col-sm-4 center">
+        <h1 id="todo">To Do</h1>
+        <ul></ul>
     </div>
+    <div class="col-sm-4 center">
+        <h1 id="done">Done</h1>
+        <ul></ul>
+    </div>
+    <div class="container col-sm-4">
+        <div class="col-sm-12 center">
+            <form method="post" name="taskForm" action="index.html">
+                <div class="form-group">
+                    <label for="task"><h2>GeekWise ToDo!</h2></label>
+                    <input type="text" name="newTaskEntry" id="task" class="form-control" value="" placeholder="Do stuff">
+                </div>
+                <input type="submit" value="Submit" class="btn btn-primary">
+            </form>
+        </div>
+    </div>            
     <script src="js\scripts.js"></script>
-
+</body>
+</html>
     <!-- This DIV is the html form for the event listener in script.js
         <div class="container-fluid">
         <h1 class="text-center">Day 8 - Forms</h1>
@@ -38,6 +44,3 @@
 
         </form>
       </div> -->
-
-</body>
-</html>

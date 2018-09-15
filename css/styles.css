@@ -1,0 +1,12 @@
+body {
+    background-image: url("bgtile.png");
+    background-repeat: repeat;
+}
+
+.center {
+    text-align: center;
+}
+
+.input {
+    max-width: 500px;
+}
