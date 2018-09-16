@@ -10,21 +10,24 @@
 </head>
 <body>
     <div class="col-sm-4 center">
-        <h1 id="todo">To Do</h1>
+        <hr>
+        <h1 id="todo" class="heading">To Do</h1>
         <ul></ul>
     </div>
     <div class="col-sm-4 center">
-        <h1 id="done">Done</h1>
+        <hr>
+        <h1 id="done" class="heading">Done</h1>
         <ul></ul>
     </div>
-    <div class="container col-sm-4">
-        <div class="col-sm-12 center">
-            <form method="post" name="taskForm" action="index.html">
-                <div class="form-group">
-                    <label for="task"><h2>GeekWise ToDo!</h2></label>
+    <div class="container col-sm-4 center">
+        <hr>
+        <h1 id="newTask" class="heading">New</h1>
+        <form method="post" name="taskForm" action="index.html">
+                <div class="form-group"> <!-- add <div class="form-group has-error"> with invalid input-->
+                    <label for="task"></label>
                     <input type="text" name="newTaskEntry" id="task" class="form-control" value="" placeholder="Do stuff">
                 </div>
-                <input type="submit" value="Submit" class="btn btn-primary">
+                <input type="submit" value="To Do" class="btn btn-primary btn-lg">
             </form>
         </div>
     </div>            

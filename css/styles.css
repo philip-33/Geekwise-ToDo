@@ -1,12 +1,15 @@
 body {
-    background-image: url("bgtile.png");
+    background-image: url(../bgtile.png);
     background-repeat: repeat;
+    background-color: lightgray;
 }
 
 .center {
     text-align: center;
 }
 
-.input {
-    max-width: 500px;
+.heading {
+    font-family: serif;
+    font-style: oblique;
+    font-weight: bold;
 }
