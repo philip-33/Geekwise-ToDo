@@ -11,13 +11,13 @@
 <body>
     <div class="col-sm-4 center">
         <hr>
-        <h1 id="todo" class="heading">To Do</h1>
-        <ul></ul>
+        <h1 class="heading">To Do</h1>
+        <ul id="todo"></ul>
     </div>
     <div class="col-sm-4 center">
         <hr>
-        <h1 id="done" class="heading">Done</h1>
-        <ul></ul>
+        <h1 class="heading">Done</h1>
+        <ul id="done"></ul>
     </div>
     <div class="container col-sm-4 center">
         <hr>
@@ -25,7 +25,7 @@
         <form method="post" name="taskForm" action="index.html">
                 <div class="form-group"> <!-- add <div class="form-group has-error"> with invalid input-->
                     <label for="task"></label>
-                    <input type="text" name="newTaskEntry" id="task" class="form-control" value="" placeholder="Do stuff">
+                    <input type="text" class="form-control" id="task" value="" name="tsk" placeholder="What Do?">
                 </div>
                 <input type="submit" value="To Do" class="btn btn-primary btn-lg">
             </form>

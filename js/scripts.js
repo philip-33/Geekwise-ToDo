@@ -18,12 +18,11 @@
 
 taskForm.addEventListener("submit", e => {
     e.preventDefault();
-    let toDoList = document.querySelector("todo");
-    let doneList = document.querySelector("done");
-    let newTask = document.createElement("li");
-    let task = e.target["tsk"].value;
-    newTask.textContent = message;
-    list.appendChild(newTask);
-    tastForm.reset();
-    console.log(e.target["tsk"].value);
+    let doList = document.getElementById("todo"); //holds <ul> element (as an object)
+    let newTask = document.createElement("li"); //holds <li> element (as an object)
+    let task = e.target["tsk"].value; //holds value entered into field
+    newTask.textContent = task; //sets the text of the <li> to the user input
+    doList.appendChild(newTask);   //appends newTask object to the list!
+    taskForm.reset();
+    console.log(task);
 })
