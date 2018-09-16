@@ -16,13 +16,30 @@
 //stop using "getElementByID" and instead use document.queryselector
 //ID's are for javascript. Best Practice: DON'T USE ID'S WHEN NOT USING JAVASCRIPT
 
+
 taskForm.addEventListener("submit", e => {
     e.preventDefault();
     let doList = document.getElementById("todo"); //holds <ul> element (as an object)
     let newTask = document.createElement("li"); //holds <li> element (as an object)
     let task = e.target["tsk"].value; //holds value entered into field
-    newTask.textContent = task; //sets the text of the <li> to the user input
-    doList.appendChild(newTask);   //appends newTask object to the list!
-    taskForm.reset();
-    console.log(task);
+  //  newTask.textContent = task; //sets the text of the <li> to the user input
+  // the above is no longer necessary when using bootstrap checkboxes
+    newTask = setTaskClass(newTask);    //adds styling classes to the new task object
+    newTask = addCheckBox(newTask, task);
+    doList.appendChild(newTask);   //appends newTask object to the list, now with more styling!
+    taskForm.reset();   //clears out the field after submitting text
+    console.log(doList);
+    console.log(taskArray);
 })
+
+
+function setTaskClass(myNewTask) {
+    myNewTask.className = "taskStyle";
+    return myNewTask;
+}
+
+function addCheckBox(myNewTask, taskText) {
+    myNewTask.insertAdjacentHTML('beforeend', `<div><input type="checkbox" name="taskCheckBox" value="${taskText}">${taskText}<br></div>`);
+    taskSerialNumber++;
+    return myNewTask;
+}

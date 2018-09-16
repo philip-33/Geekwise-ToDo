@@ -13,3 +13,9 @@ body {
     font-style: oblique;
     font-weight: bold;
 }
+
+.taskStyle {
+    list-style-type: none;
+    font-family: sans-serif;
+    font-size: x-large;
+}
