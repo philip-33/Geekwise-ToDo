@@ -13,46 +13,49 @@
 //   })
 
 
-//stop using "getElementByID" and instead use document.queryselector
+
 //ID's are for javascript. Best Practice: DON'T USE ID'S WHEN NOT USING JAVASCRIPT
 
-taskForm.addEventListener("submit", e => {
+taskForm.addEventListener("submit", e => { //takes form with name="taskForm"
     e.preventDefault();
-    let doList = document.getElementById("todo"); //holds <ul> element (as an object)
-    let newTask = document.createElement("li"); //holds <li> element (as an object)
-    let task = e.target["tsk"].value; //holds value entered into field
-  //  newTask.textContent = task; //sets the text of the <li> to the user input
-  // the above is no longer necessary when using bootstrap checkboxes
-    newTask = setTaskClass(newTask);    //adds styling classes to the new task object
-    newTask = addButtons(newTask, task);
+    let doList = document.getElementById("todo"); //holds <ul> element with ID "todo", used as parent for adding elements
+    let newTask = document.createElement("li"); //holds newly created <li> element, to be inserted as a child in the <ul>
+    let task = e.target["tsk"].value; //holds value entered into "new task" text entry field
+    newTask.setAttribute("class", "taskItem"); //javascript way of setting li class
+    newTask.textContent = task; //javascript way of setting text component of li
+    newTask = addCheckBox(newTask);
     doList.appendChild(newTask);   //appends newTask object to the list, now with more styling!
+//investigate logic here, may be easier to use adjacenthtml to insert single checkbox element, could replace "addCheckBox()"
+//listeners will go below in "always on" portion of javascript
     taskForm.reset();   //clears out the field after submitting text
     console.log(doList);
-})
+}) //once this function completes, only a <li> with text will exist.
 
-
-function setTaskClass(myNewTask) {
-    myNewTask.className = "taskStyle";
-    return myNewTask;
+//add checkbox to the beginning of the <li>
+function addCheckBox(newTask) {
+    var myListOfTasks = document.getElementsByClassName("taskItem");
+    console.log('just before the for');
+    // for (let i = 0; i < myListOfTasks.length; i++) {
+        console.log('in the for loop');
+        let newCheckbox = document.createElement("input");
+        newCheckbox.setAttribute("type", "checkbox");
+        newCheckbox.setAttribute("value", "undone");
+        newTask.insertBefore(newCheckbox);
+    // }
+    return newTask;
 }
 
-function addButtons(myNewTask, taskText) {
-    myNewTask.insertAdjacentHTML('beforeend', `
-        <div class="input-group">
-            <input type="text" class="form-control" value="${taskText}">
-            <div class="input-group-addon">
-                    <input type="checkbox">
-                    <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-pencil"></span></button>
-                    <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-trash"></span></button>
-            </div>
-        </div>
-    `);
-    return myNewTask;
-}
-
-// <div class="input-group">
-//   <input type="text" class="form-control" aria-label="...">
-//   <div class="input-group-btn">
-//     <!-- Buttons -->
-//   </div>
-// </div>
+// below is the old way of building the interactive components. Moving away from this.
+// function addButtons(myNewTask, taskText) {
+//     myNewTask.insertAdjacentHTML('beforeend', `
+//         <div class="input-group">
+//             <input type="text" class="form-control" value="${taskText}">
+//             <div class="input-group-addon">
+//                     <input type="checkbox">
+//                     <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-pencil"></span></button>
+//                     <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-trash"></span></button>
+//             </div>
+//         </div>
+//     `);
+//     return myNewTask;
+// }
