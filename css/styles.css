@@ -19,3 +19,15 @@ body {
     font-family: sans-serif;
     font-size: x-large;
 }
+
+input[type=checkbox].taskItemCheckBox {
+    margin: .25em;
+}
+
+.editButton {
+    float: right;
+}
+
+.deleteButton {
+    float: right;
+}

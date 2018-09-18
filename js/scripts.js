@@ -23,27 +23,19 @@ taskForm.addEventListener("submit", e => { //takes form with name="taskForm"
     let task = e.target["tsk"].value; //holds value entered into "new task" text entry field
     newTask.setAttribute("class", "taskItem"); //javascript way of setting li class
     newTask.textContent = task; //javascript way of setting text component of li
-    newTask = addCheckBox(newTask);
+    // newTask = addCheckBox(newTask);
+    newTask.insertAdjacentHTML('afterbegin', `<input type="checkbox" class="taskItemCheckBox" value="undone">`); //adds checkbox
+    newTask.insertAdjacentHTML('beforeend', `<button type="button" class="btn btn-danger btn-sm deleteButton">
+        <span class="glyphicon glyphicon-trash"></span></button>`);                                              //adds a delete button
+    newTask.insertAdjacentHTML('beforeend', `<button type="button" class="btn btn-primary btn-sm editButton">
+        <span class="glyphicon glyphicon-pencil"></span></button>`);                                             //adds an edit button
+
     doList.appendChild(newTask);   //appends newTask object to the list, now with more styling!
 //investigate logic here, may be easier to use adjacenthtml to insert single checkbox element, could replace "addCheckBox()"
 //listeners will go below in "always on" portion of javascript
     taskForm.reset();   //clears out the field after submitting text
     console.log(doList);
 }) //once this function completes, only a <li> with text will exist.
-
-//add checkbox to the beginning of the <li>
-function addCheckBox(newTask) {
-    var myListOfTasks = document.getElementsByClassName("taskItem");
-    console.log('just before the for');
-    // for (let i = 0; i < myListOfTasks.length; i++) {
-        console.log('in the for loop');
-        let newCheckbox = document.createElement("input");
-        newCheckbox.setAttribute("type", "checkbox");
-        newCheckbox.setAttribute("value", "undone");
-        newTask.insertBefore(newCheckbox);
-    // }
-    return newTask;
-}
 
 // below is the old way of building the interactive components. Moving away from this.
 // function addButtons(myNewTask, taskText) {
