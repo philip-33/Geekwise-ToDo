@@ -37,6 +37,7 @@ taskForm.addEventListener("submit", e => { //takes form with name="taskForm"
     console.log(doList);
 }) //once this function completes, only a <li> with text will exist.
 
+
 // below is the old way of building the interactive components. Moving away from this.
 // function addButtons(myNewTask, taskText) {
 //     myNewTask.insertAdjacentHTML('beforeend', `
