@@ -15,11 +15,15 @@ taskForm.addEventListener("submit", e => { //takes form with name="taskForm"
     let doList = document.getElementById("todo"); //holds <ul> element with ID "todo", used as parent for adding elements
     let newTask = document.createElement("li"); //holds newly created <li> element, to be inserted as a child in the <ul>
     let task = e.target["tsk"].value; //holds value entered into "new task" text entry field
-    newTask.setAttribute("class", "taskItem"); //javascript way of setting li class
-    newTask.setAttribute("value", "undone"); //sets special property to track doneness
-    newTask.textContent = task; 
-    newTask = addButtons(newTask);
-    doList.appendChild(newTask);   //appends newTask li object to the ul
+    if (task == "") {
+
+    } else {
+        newTask.setAttribute("class", "taskItem"); //javascript way of setting li class
+        newTask.setAttribute("value", "undone"); //sets special property to track doneness
+        newTask.textContent = task; 
+        newTask = addButtons(newTask);
+        doList.appendChild(newTask);   //appends newTask li object to the ul
+    }
     taskForm.reset();   //clears out the field after submitting text
     console.log(doList);
 }) 
