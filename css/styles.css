@@ -32,3 +32,7 @@ body {
     float: left;
     margin-right: 5px;
 }
+
+.strikethrough {
+    text-decoration: line-through;
+}

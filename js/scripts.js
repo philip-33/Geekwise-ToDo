@@ -49,8 +49,16 @@ todo.onclick = function(event) {   // "listener" (not quite) that looks for clic
 }
 
 todo.onchange = function(event) {
-    console.log(event.target);
-    console.log("got that check");
+    console.log("got the check");
+    if (event.target.value == "undone") {
+        console.log("I see a task that is now complete!");
+        event.target.value = "done";
+        event.target.parentElement.classList.add("strikethrough");
+    } else if (event.target.value == "done") {
+        console.log("I see a task that is now undone!");
+        event.target.value = "undone";
+        event.target.parentElement.classList.remove("strikethrough");
+    }
 }
 
 function clickedDeleteButton(element) {
