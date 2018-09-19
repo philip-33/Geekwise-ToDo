@@ -1,7 +1,8 @@
 // function for adding necessary buttons to task items
 function addButtons(element) {
-    element.insertAdjacentHTML('afterbegin', `<button type="button" class="btn btn-success btn-sm doneButton">
-        <span class="glyphicon glyphicon-unchecked"></span></button>`);
+    element.insertAdjacentHTML('afterbegin', `<input type="checkbox" name="doneBox" value="undone">`);
+    // element.insertAdjacentHTML('afterbegin', `<button type="button" class="btn btn-success btn-sm doneButton">
+    //     <span class="glyphicon glyphicon-unchecked"></span></button>`);
     element.insertAdjacentHTML('beforeend', `<button type="button" class="btn btn-danger btn-sm deleteButton">
         <span class="glyphicon glyphicon-trash"></span></button>`);
     element.insertAdjacentHTML('beforeend', `<button type="button" class="btn btn-primary btn-sm editButton">
@@ -47,6 +48,11 @@ todo.onclick = function(event) {   // "listener" (not quite) that looks for clic
     }
 }
 
+todo.onchange = function(event) {
+    console.log(event.target);
+    console.log("got that check");
+}
+
 function clickedDeleteButton(element) {
     element.remove();
 }
@@ -60,5 +66,5 @@ function clickedEditButton(element) {
 
 function clickedDoneButton(element) {
     let tempElement = element;
-    console.log(tempElement.childElement.childElement);
+    console.log(tempElement);
 }
