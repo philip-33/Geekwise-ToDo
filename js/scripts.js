@@ -28,11 +28,10 @@ taskForm.addEventListener("submit", e => { //takes form with name="taskForm"
     console.log(doList);
 }) 
 
-todo.onclick = function(event) {   // "listener" (not quite) that looks for click events that happen on the button elements
-    // console.log(event.target.className);
-    // console.log(event.target.parentElement);  
+todo.onclick = function(event) {   // function that listens for click events on the to do list <ul>
 
-    //unless both sets of classes are specified, it will be possible to click on the icon in the middle and not catch the click!
+    //The icon on the button is technically a child element (thanks, Bootstrap)
+    //The control structure ensures the correct level element is passed to the function
     if (event.target.className == "btn btn-danger btn-sm deleteButton") { 
     clickedDeleteButton(event.target.parentElement);
     } else if (event.target.className == "glyphicon glyphicon-trash") {
@@ -44,22 +43,13 @@ todo.onclick = function(event) {   // "listener" (not quite) that looks for clic
     } else if (event.target.className == "glyphicon glyphicon-pencil") { 
     clickedEditButton(event.target.parentElement.parentElement);
     }
-
-    if (event.target.className == "btn btn-success btn-sm doneButton") {
-    clickedDoneButton(event.target.parentElement);
-    } else if (event.target.className == "glyphicon glyphicon-unchecked" || event.target.className == "glyphicon glyphicon-ok") { //additional catch for when the check mark is done
-    clickedDoneButton(event.target.parentElement.parentElement);
-    }
 }
 
-todo.onchange = function(event) {
-    console.log("got the check");
+todo.onchange = function(event) {   //this listens for checkbox clicks and responds appropriately
     if (event.target.value == "undone") {
-        console.log("I see a task that is now complete!");
         event.target.value = "done";
         event.target.parentElement.classList.add("strikethrough");
     } else if (event.target.value == "done") {
-        console.log("I see a task that is now undone!");
         event.target.value = "undone";
         event.target.parentElement.classList.remove("strikethrough");
     }
@@ -69,14 +59,9 @@ function clickedDeleteButton(element) {
     element.remove();
 }
 
-function clickedEditButton(element) {
-    let tempElement = element;
+function clickedEditButton(element) { //Instead of hiding the delete button while editing, a prompt() is far simpler
+    let tempElement = element;          
     let newTaskText = prompt("Please enter a new task to replace this one.");
     tempElement.textContent = newTaskText;
     tempElement = addButtons(tempElement);
-}
-
-function clickedDoneButton(element) {
-    let tempElement = element;
-    console.log(tempElement);
 }
