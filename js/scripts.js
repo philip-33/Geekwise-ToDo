@@ -1,18 +1,13 @@
-
-
-// This block models the logic necessary to get the text from the user:
-// messageForm.addEventListener("submit", e => {
-//     e.preventDefault();
-//     let list = document.getElementById("list");
-//     let newMessage = document.createElement("li");
-//     let message = e.target["msg"].value;
-//     newMessage.textContent = message;
-//     list.appendChild(newMessage);
-//     messageForm.reset();
-//     // console.log(e.target["msg"].value);
-//   })
-
-//ID's are for javascript. Best Practice: DON'T USE ID'S WHEN NOT USING JAVASCRIPT
+// function for adding necessary buttons to task items
+function addButtons(element) {
+    element.insertAdjacentHTML('afterbegin', `<button type="button" class="btn btn-success btn-sm doneButton">
+        <span class="glyphicon glyphicon-unchecked"></span></button>`);
+    element.insertAdjacentHTML('beforeend', `<button type="button" class="btn btn-danger btn-sm deleteButton">
+        <span class="glyphicon glyphicon-trash"></span></button>`);
+    element.insertAdjacentHTML('beforeend', `<button type="button" class="btn btn-primary btn-sm editButton">
+        <span class="glyphicon glyphicon-pencil"></span></button>`);
+    return element;
+}
 
 taskForm.addEventListener("submit", e => { //takes form with name="taskForm"
     e.preventDefault();
@@ -20,35 +15,50 @@ taskForm.addEventListener("submit", e => { //takes form with name="taskForm"
     let newTask = document.createElement("li"); //holds newly created <li> element, to be inserted as a child in the <ul>
     let task = e.target["tsk"].value; //holds value entered into "new task" text entry field
     newTask.setAttribute("class", "taskItem"); //javascript way of setting li class
-    newTask.textContent = task; //javascript way of setting text component of li
-    // newTask = addCheckBox(newTask);
-    newTask.insertAdjacentHTML('afterbegin', `<button type="button" class="btn btn-success btn-sm doneButton">
-    <span class="glyphicon glyphicon-unchecked"></span></button>`);    
-    // newTask.insertAdjacentHTML('afterbegin', `<input type="checkbox" class="taskItemCheckBox" value="undone">`); //adds checkbox
-    newTask.insertAdjacentHTML('beforeend', `<button type="button" class="btn btn-danger btn-sm deleteButton">
-        <span class="glyphicon glyphicon-trash"></span></button>`);                                              //adds a delete button
-    newTask.insertAdjacentHTML('beforeend', `<button type="button" class="btn btn-primary btn-sm editButton">
-        <span class="glyphicon glyphicon-pencil"></span></button>`);                                             //adds an edit button
-
-    doList.appendChild(newTask);   //appends newTask object to the list, now with more styling!
-//investigate logic here, may be easier to use adjacenthtml to insert single checkbox element, could replace "addCheckBox()"
-//listeners will go below in "always on" portion of javascript
+    newTask.setAttribute("value", "undone"); //sets special property to track doneness
+    newTask.textContent = task; 
+    newTask = addButtons(newTask);
+    doList.appendChild(newTask);   //appends newTask li object to the ul
     taskForm.reset();   //clears out the field after submitting text
     console.log(doList);
-}) //once this function completes, only a <li> with text will exist.
+}) 
 
+todo.onclick = function(event) {   // "listener" (not quite) that looks for click events that happen on the button elements
+    // console.log(event.target.className);
+    // console.log(event.target.parentElement);  
 
-// below is the old way of building the interactive components. Moving away from this.
-// function addButtons(myNewTask, taskText) {
-//     myNewTask.insertAdjacentHTML('beforeend', `
-//         <div class="input-group">
-//             <input type="text" class="form-control" value="${taskText}">
-//             <div class="input-group-addon">
-//                     <input type="checkbox">
-//                     <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-pencil"></span></button>
-//                     <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-trash"></span></button>
-//             </div>
-//         </div>
-//     `);
-//     return myNewTask;
-// }
+    //unless both sets of classes are specified, it will be possible to click on the icon in the middle and not catch the click!
+    if (event.target.className == "btn btn-danger btn-sm deleteButton") { 
+    clickedDeleteButton(event.target.parentElement);
+    } else if (event.target.className == "glyphicon glyphicon-trash") {
+    clickedDeleteButton(event.target.parentElement.parentElement);
+    }
+
+    if (event.target.className == "btn btn-primary btn-sm editButton") {
+    clickedEditButton(event.target.parentElement);
+    } else if (event.target.className == "glyphicon glyphicon-pencil") { 
+    clickedEditButton(event.target.parentElement.parentElement);
+    }
+
+    if (event.target.className == "btn btn-success btn-sm doneButton") {
+    clickedDoneButton(event.target.parentElement);
+    } else if (event.target.className == "glyphicon glyphicon-unchecked" || event.target.className == "glyphicon glyphicon-ok") { //additional catch for when the check mark is done
+    clickedDoneButton(event.target.parentElement.parentElement);
+    }
+}
+
+function clickedDeleteButton(element) {
+    element.remove();
+}
+
+function clickedEditButton(element) {
+    let tempElement = element;
+    let newTaskText = prompt("Please enter a new task to replace this one.");
+    tempElement.textContent = newTaskText;
+    tempElement = addButtons(tempElement);
+}
+
+function clickedDoneButton(element) {
+    let tempElement = element;
+    console.log(tempElement.childElement.childElement);
+}
