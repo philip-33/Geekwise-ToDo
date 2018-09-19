@@ -12,8 +12,6 @@
 //     // console.log(e.target["msg"].value);
 //   })
 
-
-
 //ID's are for javascript. Best Practice: DON'T USE ID'S WHEN NOT USING JAVASCRIPT
 
 taskForm.addEventListener("submit", e => { //takes form with name="taskForm"
@@ -24,7 +22,9 @@ taskForm.addEventListener("submit", e => { //takes form with name="taskForm"
     newTask.setAttribute("class", "taskItem"); //javascript way of setting li class
     newTask.textContent = task; //javascript way of setting text component of li
     // newTask = addCheckBox(newTask);
-    newTask.insertAdjacentHTML('afterbegin', `<input type="checkbox" class="taskItemCheckBox" value="undone">`); //adds checkbox
+    newTask.insertAdjacentHTML('afterbegin', `<button type="button" class="btn btn-success btn-sm doneButton">
+    <span class="glyphicon glyphicon-unchecked"></span></button>`);    
+    // newTask.insertAdjacentHTML('afterbegin', `<input type="checkbox" class="taskItemCheckBox" value="undone">`); //adds checkbox
     newTask.insertAdjacentHTML('beforeend', `<button type="button" class="btn btn-danger btn-sm deleteButton">
         <span class="glyphicon glyphicon-trash"></span></button>`);                                              //adds a delete button
     newTask.insertAdjacentHTML('beforeend', `<button type="button" class="btn btn-primary btn-sm editButton">

@@ -31,3 +31,8 @@ input[type=checkbox].taskItemCheckBox {
 .deleteButton {
     float: right;
 }
+
+.doneButton {
+    float: left;
+    margin-right: 5px;
+}
