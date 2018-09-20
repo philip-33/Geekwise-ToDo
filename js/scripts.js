@@ -1,8 +1,6 @@
 // function for adding necessary buttons to task items
 function addButtons(element) {
     element.insertAdjacentHTML('afterbegin', `<input type="checkbox" name="doneBox" value="undone">`);
-    // element.insertAdjacentHTML('afterbegin', `<button type="button" class="btn btn-success btn-sm doneButton">
-    //     <span class="glyphicon glyphicon-unchecked"></span></button>`);
     element.insertAdjacentHTML('beforeend', `<button type="button" class="btn btn-danger btn-sm deleteButton">
         <span class="glyphicon glyphicon-trash"></span></button>`);
     element.insertAdjacentHTML('beforeend', `<button type="button" class="btn btn-primary btn-sm editButton">
