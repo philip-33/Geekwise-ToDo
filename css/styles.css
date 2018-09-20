@@ -28,11 +28,6 @@ body {
     float: right;
 }
 
-.doneButton {
-    float: left;
-    margin-right: 5px;
-}
-
 .strikethrough {
     text-decoration: line-through;
 }

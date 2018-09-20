@@ -1,6 +1,6 @@
 // function for adding necessary buttons to task items
 function addButtons(element) {
-    element.insertAdjacentHTML('afterbegin', `<input type="checkbox" name="doneBox" value="undone">`);
+    element.insertAdjacentHTML('afterbegin', `<input type="checkbox" value="undone">`);
     element.insertAdjacentHTML('beforeend', `<button type="button" class="btn btn-danger btn-sm deleteButton">
         <span class="glyphicon glyphicon-trash"></span></button>`);
     element.insertAdjacentHTML('beforeend', `<button type="button" class="btn btn-primary btn-sm editButton">
@@ -23,7 +23,6 @@ taskForm.addEventListener("submit", e => { //takes form with name="taskForm"
         doList.appendChild(newTask);   //appends newTask li object to the ul
     }
     taskForm.reset();   //clears out the field after submitting text
-    console.log(doList);
 }) 
 
 todo.onclick = function(event) {   // function that listens for click events on the to do list <ul>
@@ -58,8 +57,13 @@ function clickedDeleteButton(element) {
 }
 
 function clickedEditButton(element) { //Instead of hiding the delete button while editing, a prompt() is far simpler
-    let tempElement = element;          
+    console.log(element.classList.contains("strikethrough"));
+    let strikeCheck = element.classList.contains("strikethrough");
+    let tempElement = element;
     let newTaskText = prompt("Please enter a new task to replace this one.");
     tempElement.textContent = newTaskText;
     tempElement = addButtons(tempElement);
+    if (strikeCheck) { 
+        element.classList.remove("strikethrough");
+    }
 }
